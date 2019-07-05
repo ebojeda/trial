@@ -33,6 +33,8 @@ All Data was extracted from [City of Calgary’s Open Data Catalogue](https://da
 * Tessellations bsed on GPS coordinates of each location.
 ==> Map Visualization
 
+<img src="https://github.com/ojeda-e/OpenDataCalgary/blob/master/Diagram_YYCVoronoi.png"><br>
+
 #### Bike Paths
 
 
