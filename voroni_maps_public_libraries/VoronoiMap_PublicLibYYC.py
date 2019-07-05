@@ -6,6 +6,15 @@ import matplotlib as mpl
 from scipy.spatial import Voronoi, voronoi_plot_2d
 import smopy
 
+"""
+Voroni diagram calculated for a set of coordinates using public libraries location 
+in the City of Calgary. Map visualization using PolyCollection.
+Output file in .png format (OpenStreetMap overlapped by Voronoi tesellation).
+"""
+
+__author__ = "Estefania Barreto-Ojeda"
+version = 1.0
+
 
 def import_data(csv_file):
  	""" Extract latitude and longitude of each location (index) """
@@ -92,9 +101,6 @@ def new_locs(latitude, longitude):
 	new_locations = [ [latitude[i], longitude[i]] for i in range(len(longitude))]  
 	new_locations = np.asarray(new_locations).astype(float)
 
-	
-	#regions, vertices = voronoi_finite_polygons_2d(vor)
-	
 	return new_locations
 
 def plot_voronoi(box, latitude, longitude, new_loc):
@@ -139,13 +145,14 @@ def main ():
 	# Define box to retrive OpenStreetMap
 	box = [lat.min(), lon.min(), lat.max(), lon.max()]
 	
+	# Plot
 	plot_voronoi( box, lat, lon, new_locs(lat, lon) )
 
 	return 0
 
 
-main()
-
+if __name__ == "__main__":
+	main()
 
 
 
