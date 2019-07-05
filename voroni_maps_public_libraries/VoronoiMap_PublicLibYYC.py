@@ -85,30 +85,33 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 	return new_regions, np.asarray(new_vertices)
 
 
-def voronoi_tessellation(latitude, longitude):
+def new_locs(latitude, longitude):
 	"""Compute Voronoi tessellation"""
 
 	# # List Comprehension to array of [lat, lon] for each location
 	new_locations = [ [latitude[i], longitude[i]] for i in range(len(longitude))]  
 	new_locations = np.asarray(new_locations).astype(float)
 
-	vor = Voronoi(new_locations)
-	regions, vertices = voronoi_finite_polygons_2d(vor)
 	
-	return regions, vertices
+	#regions, vertices = voronoi_finite_polygons_2d(vor)
+	
+	return new_locations
 
-def plot_voronoi(box, longitude, vertices, regions):
+def plot_voronoi(box, latitude, longitude, new_loc):
 	"""Retrive Map and plot Voronoi Diagram. 
-	Final figure exported as .png"""
+	Final figure exported as .png """
 
 	# Retrieve map
 	m = smopy.Map(box, z=11) 
-	
+
+	vor = Voronoi(new_locs(latitude, longitude))
+
+	regions, vertices = voronoi_finite_polygons_2d(vor)
 	#Define Color Map for each cuadrantt
 	cmap = plt.cm.Set3
 	cuadrants = len(longitude)
 	colors_cuadrants = cmap( np.linspace(0, 1., cuadrants))[:, :3]
-	colors = .85 * np.random.rand(len(lon),3)
+	colors = .85 * np.random.rand(len(longitude),3)
 
 	# Define each cuadrant to plot
 	cells = [m.to_pixels(vertices[region]) for region in regions]
@@ -135,8 +138,8 @@ def main ():
 	
 	# Define box to retrive OpenStreetMap
 	box = [lat.min(), lon.min(), lat.max(), lon.max()]
-
-	voronoi_tessellation(lat, lon)
+	
+	plot_voronoi( box, lat, lon, new_locs(lat, lon) )
 
 	return 0
 
