@@ -28,10 +28,11 @@ All Data was extracted from [City of Calgary’s Open Data Catalogue](https://da
  
 ### Public Libraries
 
-#### Voronoi Diagram + OpenStreetMaps via smopy
+#### Voronoi Diagram + OpenStreetMaps (via smopy)
 
-* Tessellations bsed on GPS coordinates of each location.
-==> Map Visualization
+* Tessellation map using coordinates of each library location.
+* Map visualization using [PolyCollection](https://matplotlib.org/3.1.0/gallery/shapes_and_collections/collections.html).
+* Output file in `.png` format (OepnStreetMap overlapped by Voronoi tesellation). 
 
 <img src="https://github.com/ojeda-e/OpenDataCalgary/blob/master/Diagram_YYCVoronoi.png"><br>
 
