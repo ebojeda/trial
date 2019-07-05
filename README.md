@@ -1,6 +1,10 @@
 # Calgary Open Data
 
-This repository uses the City of Calgary’s Open Data Catalogue to visualize relevant information.
+This repository uses the City of Calgary’s Open Data Catalogue to visualize:
+
+1) the closest public libraries for each area. [Voronoi Diagrams](https://github.com/ojeda-e/OpenDataCalgary/tree/master/voroni_maps_public_libraries)
+
+2)
 
 ## Getting Started
 
