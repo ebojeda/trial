@@ -1,6 +1,6 @@
 # Calgary Open Data
 
-Using City of Calgary Open Data Base to visualize relevant information and gain insights about our city.
+This repository uses the City of Calgary’s Open Data Catalogue to visualize relevant information.
 
 ## Getting Started
 
@@ -14,7 +14,6 @@ All the notebooks here included use Python 3.7. The exercises are intended to be
 - Scipy
 - Smopy
 - Pandas
-- 
 
 
 To install smopy 
@@ -25,7 +24,8 @@ pip install smopy
 
 ## Open data: 
 
-
+All Data was extracted from [City of Calgary’s Open Data Catalogue](https://data.calgary.ca), The City of Calgary’s open data portal.
+ 
 ### Public Libraries
 
 #### Voronoi Diagram + OpenStreetMaps via smopy
