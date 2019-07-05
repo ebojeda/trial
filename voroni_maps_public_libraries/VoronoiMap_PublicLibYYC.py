@@ -92,7 +92,36 @@ def voronoi_tessellation(latitude, longitude):
 	new_locations = [ [latitude[i], longitude[i]] for i in range(len(longitude))]  
 	new_locations = np.asarray(new_locations).astype(float)
 
-	return new_locations
+	vor = Voronoi(new_locations)
+	regions, vertices = voronoi_finite_polygons_2d(vor)
+	
+	return regions, vertices
+
+def plot_voronoi(box, longitude, vertices, regions):
+	"""Retrive Map and plot Voronoi Diagram. 
+	Final figure exported as .png"""
+
+	# Retrieve map
+	m = smopy.Map(box, z=11) 
+	
+	#Define Color Map for each cuadrantt
+	cmap = plt.cm.Set3
+	cuadrants = len(longitude)
+	colors_cuadrants = cmap( np.linspace(0, 1., cuadrants))[:, :3]
+	colors = .85 * np.random.rand(len(lon),3)
+
+	# Define each cuadrant to plot
+	cells = [m.to_pixels(vertices[region]) for region in regions]
+
+	# Generate Figure and save as png (low format)
+	fig = plt.figure()
+	x,y = m.to_pixels(new_loc[:,0], new_loc[:,1])
+	fig = m.show_mpl(figsize=(9,9))
+	fig.add_collection( mpl.collections.PolyCollection(cells, facecolors = colors, edgecolors='k', alpha=0.3, linewidth=1.5))
+	fig.plot(x,y, 'ok', ms=5)
+	plt.savefig("VoronoiMap_PublicLibYYC.png", format='png')
+
+	return 0
 
 def main ():
 	
@@ -111,35 +140,11 @@ def main ():
 
 	return 0
 
+
 main()
 
 
 
 
 
-# # Retrieve map
-# m = smopy.Map(box, z=11) 
-
-
-# # 
-# vor = Voronoi(new_loc)
-# regions, vertices = voronoi_finite_polygons_2d(vor)
-
-
-# # Plot
-# cmap = plt.cm.Set3
-# cuadrants = len(lon)
-# colors_cuadrants = cmap( np.linspace(0, 1., cuadrants))[:, :3]
-# colors = .85 * np.random.rand(len(lon),3)
-
-# # Define each cuadrant to plot
-# cells = [m.to_pixels(vertices[region]) for region in regions]
-
-
-# fig = plt.figure()
-# x,y = m.to_pixels(new_loc[:,0], new_loc[:,1])
-# fig = m.show_mpl(figsize=(9,9))
-# fig.add_collection( mpl.collections.PolyCollection(cells, facecolors = colors, edgecolors='k', alpha=0.3, linewidth=1.5))
-# fig.plot(x,y, 'ok', ms=5)
-# plt.savefig("VoronoiMap_PublicLibYYC.png", format='png')
 
