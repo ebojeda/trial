@@ -85,32 +85,43 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 	return new_regions, np.asarray(new_vertices)
 
 
+def voronoi_tessellation(latitude, longitude):
+	"""Compute Voronoi tessellation"""
+
+	# # List Comprehension to array of [lat, lon] for each location
+	new_locations = [ [latitude[i], longitude[i]] for i in range(len(longitude))]  
+	new_locations = np.asarray(new_locations).astype(float)
+
+	return new_locations
+
 def main ():
 	
 	input_file = 'Calgary_Public_Library_Locations_and_Hours.csv'
+	
+	#import data
 	df = import_data(input_file)
 
-	lat, loc = extract_coords(df)
+	#extract latitude and longitude
+	lat, lon = extract_coords(df)
 	
+	# Define box to retrive OpenStreetMap
+	box = [lat.min(), lon.min(), lat.max(), lon.max()]
+
+	voronoi_tessellation(lat, lon)
 
 	return 0
 
 main()
 
-# # List Comprehension to array of [lat, lon] for each location
-# new_loc = [ [lat[i], lon[i]] for i in range(len(lon))]  
-# new_loc = np.asarray(new_loc).astype(float)
 
 
-# # Define box to retrive OpenStreetMap
-# box = [lat.min(), lon.min(), lat.max(), lon.max()]
 
 
 # # Retrieve map
 # m = smopy.Map(box, z=11) 
 
 
-# # Compute Voronoi tessellation
+# # 
 # vor = Voronoi(new_loc)
 # regions, vertices = voronoi_finite_polygons_2d(vor)
 
