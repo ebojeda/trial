@@ -7,8 +7,22 @@ from scipy.spatial import Voronoi, voronoi_plot_2d
 import smopy
 
 
+def import_data(csv_file):
+ 	""" Extract latitude and longitude of each location (index) """
+ 	return pd.read_csv(csv_file)
+
+def extract_coords(dframe):
+	""" Define location by latitude and longitude """
+	
+	loc = df["Location"].str.strip('()').str.split(',', expand=True).rename(columns={0:"Lat", 1:"Lon"})
+	lat = loc['Lat'].values.astype(float)
+	lon = loc['Lon'].values.astype(float)
+
+	return lat, lon
 
 def voronoi_finite_polygons_2d(vor, radius=None):
+	""" Define new regions and new vertices """
+
     if vor.points.shape[1] != 2:
         raise ValueError("Requires 2D input")
 
@@ -69,18 +83,6 @@ def voronoi_finite_polygons_2d(vor, radius=None):
 
     return new_regions, np.asarray(new_vertices)
 
-def import_data(csv_file):
- 	""" Extract latitude and longitude of each location (index) """
- 	return pd.read_csv(csv_file)
-
-def extract_coords(dframe):
-	""" Define location by latitude and longitude """
-	
-	loc = df["Location"].str.strip('()').str.split(',', expand=True).rename(columns={0:"Lat", 1:"Lon"})
-	lat = loc['Lat'].values.astype(float)
-	lon = loc['Lon'].values.astype(float)
-
-	return lat, lon
 
 
 def main ():
