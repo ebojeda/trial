@@ -24,7 +24,7 @@ pip install smopy
 
 ## Open data: 
 
-All Data was extracted from [Open Calgary](https://data.calgary.ca), The City of Calgary’s open data portal.
+All Data was extracted from [City of Calgary’s Open Data Catalogue](https://data.calgary.ca), The City of Calgary’s open data portal.
  
 ### Public Libraries
 
